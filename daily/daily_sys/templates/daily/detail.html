@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{ daily.title }}{% endblock %}
+{% block css %}
+        <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ daily.title }}</h2>
+<h5>汇报人：{{ daily.owner }}  时间：{{ daily.created_time }}</h5>
+<h4>{{ daily.content }}</h4>
+{% endblock %}
+</body>
+</html>
