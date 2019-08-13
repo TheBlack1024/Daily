@@ -24,12 +24,11 @@ class IndexView(ListView):
     template_name = 'index.html'
     
     def get_queryset(self):
-        querset = super().get_queryset()
+        queryset = super().get_queryset()
         company_id = self.request.session.get('company_id',None)
-        #print(company_id)
         if not company_id:
-            return querset
-        return querset.filter(owner__company__id=company_id)
+            return queryset.filter(owner__company__id = 0)
+        return queryset.filter(owner__company__id=company_id)
         
         
 def detail(requset,daily_id):

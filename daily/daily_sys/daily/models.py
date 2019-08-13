@@ -4,6 +4,9 @@ from django.contrib.auth.models import User,AbstractUser
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 class Company(models.Model):
 
     name = models.CharField(max_length=255,verbose_name='公司名')
@@ -72,7 +75,7 @@ class Daily(models.Model):
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='日报创建时间')
     tag = models.ManyToManyField(Tag,verbose_name='标签')
     category = models.ForeignKey(Category,verbose_name='分类',on_delete=models.CASCADE)
-    content = models.TextField(verbose_name='正文',help_text='正文必须为MD格式',default='没有日报')
+    content = RichTextUploadingField(verbose_name='日报')
 
     class Meta:
         verbose_name = verbose_name_plural = "日报"
